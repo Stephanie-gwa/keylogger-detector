@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keylog-audit"
+version = "1.0.0"
+description = "A defensive, read-only tool that reports documented OS-level indicators possibly associated with keylogging activity, with a safe sample-data mode. Does not log keystrokes."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["psutil>=5.9"]
+
+[project.scripts]
+keylog-audit = "keylog_audit.cli:main"
+
+[tool.setuptools]
+packages = ["keylog_audit", "keylog_audit.indicators"]

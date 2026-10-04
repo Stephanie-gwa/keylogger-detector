@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-03-14T09:00:00+00:00",
+  "mode": "sample",
+  "os_name": "sample",
+  "process_count": 6,
+  "finding_count": 4,
+  "findings": [
+    {
+      "process": {
+        "pid": 4821,
+        "name": "svchost.exe",
+        "exe": "C:\\Users\\alex\\AppData\\Roaming\\Updater\\svchost.exe",
+        "cmdline": [
+          "C:\\Users\\alex\\AppData\\Roaming\\Updater\\svchost.exe"
+        ],
+        "ppid": 612,
+        "username": "alex",
+        "create_time": "2026-03-12T09:00:00+00:00"
+      },
+      "confidence": {
+        "level": "high",
+        "score": 10
+      },
+      "indicators": [
+        {
+          "indicator_id": "name_masquerade",
+          "weight": 4,
+          "reason": "Process is named 'svchost.exe', matching a well-known Windows system process, but is running from AppData\\Roaming instead of C:\\Windows\\System32.",
+          "evidence": "C:\\Users\\alex\\AppData\\Roaming\\Updater\\svchost.exe"
+        },
+        {
+          "indicator_id": "suspicious_path",
+          "weight": 2,
+          "reason": "Running from a path containing 'appdata', a location normal software isn't usually installed to.",
+          "evidence": "C:\\Users\\alex\\AppData\\Roaming\\Updater\\svchost.exe"
+        },
+        {
+          "indicator_id": "recent_executable",
+          "weight": 1,
+          "reason": "Executable file was last modified 2.0 day(s) ago \u2014 recent enough to be worth noting, especially alongside other indicators.",
+          "evidence": "mtime=2026-03-12"
+        },
+        {
+          "indicator_id": "windows_persistence",
+          "weight": 3,
+          "reason": "Executable is registered to launch automatically at login (1 matching entry).",
+          "evidence": "Software\\Microsoft\\Windows\\CurrentVersion\\Run\\Updater"
+        }
+      ]
+    },
+    {
+      "process": {
+        "pid": 9931,
+        "name": "xhelper",
+        "exe": "/home/alex/.local/share/xhelper/xhelper",
+        "cmdline": [
+          "/home/alex/.local/share/xhelper/xhelper",
+          "--background"
+        ],
+        "ppid": 1,
+        "username": "alex",
+        "create_time": "2026-01-28T09:00:00+00:00"
+      },
+      "confidence": {
+        "level": "medium",
+        "score": 6
+      },
+      "indicators": [
+        {
+          "indicator_id": "linux_input_fd",
+          "weight": 6,
+          "reason": "Process has 1 open file descriptor directly to a raw keyboard input device, bypassing the normal desktop input stack.",
+          "evidence": "/dev/input/event4"
+        }
+      ]
+    },
+    {
+      "process": {
+        "pid": 5502,
+        "name": "TeamViewer",
+        "exe": "/opt/teamviewer/tv_bin/TeamViewer",
+        "cmdline": [
+          "/opt/teamviewer/tv_bin/TeamViewer",
+          "--daemon"
+        ],
+        "ppid": 1,
+        "username": "alex",
+        "create_time": "2025-08-26T09:00:00+00:00"
+      },
+      "confidence": {
+        "level": "medium",
+        "score": 6
+      },
+      "indicators": [
+        {
+          "indicator_id": "linux_input_fd",
+          "weight": 6,
+          "reason": "Process has 1 open file descriptor directly to a raw keyboard input device. NOTE: remote-desktop/screen-sharing software legitimately reads input devices directly to support remote control \u2014 this is a common, documented false-positive source for this specific indicator. See README \"False positives\".",
+          "evidence": "/dev/input/event2"
+        }
+      ]
+    },
+    {
+      "process": {
+        "pid": 7744,
+        "name": "app_updater",
+        "exe": "/home/alex/.local/bin/app_updater",
+        "cmdline": [
+          "/home/alex/.local/bin/app_updater"
+        ],
+        "ppid": 1,
+        "username": "alex",
+        "create_time": "2026-03-13T09:00:00+00:00"
+      },
+      "confidence": {
+        "level": "low",
+        "score": 1
+      },
+      "indicators": [
+        {
+          "indicator_id": "recent_executable",
+          "weight": 1,
+          "reason": "Executable file was last modified 1.0 day(s) ago \u2014 recent enough to be worth noting, especially alongside other indicators.",
+          "evidence": "mtime=2026-03-13"
+        }
+      ]
+    }
+  ],
+  "unavailable_indicators": [
+    {
+      "indicator_id": "macos_tcc_input_permission",
+      "reason": "sample mode \u2014 not a real scan"
+    },
+    {
+      "indicator_id": "windows_persistence",
+      "reason": "sample mode \u2014 not a real scan"
+    }
+  ],
+  "disclaimer": "This report lists documented, read-only indicators that MAY be associated with keylogging activity. It does not capture, log, or inspect any keystroke, and a flagged process is NOT confirmed to be malicious \u2014 every finding needs a human's manual review. This tool cannot detect every keylogger: kernel-mode drivers, hardware keyloggers, browser extensions, and techniques that avoid every indicator checked here are all invisible to this report. See README \"Limitations\"."
+}

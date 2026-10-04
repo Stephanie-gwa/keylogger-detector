@@ -1,0 +1,34 @@
+Current OS: linux
+
+linux_input_fd
+    Process has an open file descriptor to a raw keyboard input device (/dev/input/eventN).
+    platforms: linux — available (needs: Must own the process (or run as root) to read /proc/<pid>/fd.)
+
+linux_persistence
+    Executable is registered to start automatically (XDG autostart or a systemd user unit).
+    platforms: linux — available
+
+macos_persistence
+    Executable is referenced by a LaunchAgent or LaunchDaemon plist.
+    platforms: macos — not applicable on linux
+
+macos_tcc_input_permission
+    Process's executable/bundle has been granted Input Monitoring or Accessibility permission (the permission macOS requires for low-level keyboard event taps).
+    platforms: macos — not applicable on linux
+
+name_masquerade
+    Process name matches a well-known system process, but its path doesn't match that process's expected system directory.
+    platforms: linux, macos, windows — available
+
+recent_executable
+    Executable file was created or modified within the last few days.
+    platforms: linux, macos, windows — available
+
+suspicious_path
+    Executable is running from a temp/hidden/user-writable location.
+    platforms: linux, macos, windows — available
+
+windows_persistence
+    Executable is referenced by a Run/RunOnce registry entry or the Startup folder.
+    platforms: windows — not applicable on linux
+
